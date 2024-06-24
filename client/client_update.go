@@ -171,7 +171,7 @@ func (u *UpdateClient) FetchUpdate(
 	url string,
 	maxWait time.Duration,
 ) (io.ReadCloser, int64, error) {
-	req, err := makeUpdateFetchRequest(url)
+	req, err := MakeUpdateFetchRequest(url)
 	if err != nil {
 		return nil, -1, errors.Wrapf(err, "failed to create update fetch request")
 	}
@@ -345,7 +345,7 @@ func makeUpdateCheckRequest(server string, current *CurrentUpdate) ([]*http.Requ
 	return reqs, nil
 }
 
-func makeUpdateFetchRequest(url string) (*http.Request, error) {
+func MakeUpdateFetchRequest(url string) (*http.Request, error) {
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return nil, err

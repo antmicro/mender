@@ -93,7 +93,7 @@ func DoStandaloneInstall(device *dev.DeviceManager, updateURI string,
 	p := utils.NewProgressWriter(imageSize)
 	tr := io.TeeReader(image, p)
 
-	return doStandaloneInstallStates(ioutil.NopCloser(tr), device, stateExec, rebootExitCode)
+	return DoStandaloneInstallStates(ioutil.NopCloser(tr), device, stateExec, rebootExitCode)
 }
 
 func doStandaloneInstallStatesDownload(art io.ReadCloser,
@@ -180,7 +180,7 @@ func doStandaloneInstallStatesDownload(art io.ReadCloser,
 	return standaloneData, nil
 }
 
-func doStandaloneInstallStates(art io.ReadCloser,
+func DoStandaloneInstallStates(art io.ReadCloser,
 	device *dev.DeviceManager, stateExec statescript.Executor,
 	rebootExitCode bool) error {
 
